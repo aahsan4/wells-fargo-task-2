@@ -12,8 +12,9 @@ public class Portfolio {
     @Column(nullable = false)
     private String portfolioName;
 
-    @Column(nullable = false)
-    private Long clientId;
+    @ManyToOne
+    private Client client;
+    
     @Column(nullable = false)
     private String creationDate;
 
@@ -21,7 +22,8 @@ public class Portfolio {
 
     }
 
-    public Portfolio(String portfolioName, Long clientId, String creationDate) {
+    public Portfolio(Client client, String portfolioName, Long clientId, String creationDate) {
+        this.client = client;
         this.portfolioName = portfolioName;
         this.clientId = clientId;
         this.creationDate = creationDate;
@@ -43,14 +45,13 @@ public class Portfolio {
         this.portfolioName = portfolioName;
     }
 
-    public Long getClientId() {
-        return clientId;
+    public Client getCLient() {
+        return client;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
-
     public String getCreationDate() {
         return creationDate;
     }
